@@ -2,12 +2,12 @@ import './App.css';
 import React, { useState } from 'react';
 import axios from '../src/config/axiosConfig';
 function App() {
-  const [newOrder, setNewOrder] = useState({ itemName: '', quantity: 0, orderAddress: "", orderDelivery: "", phoneNumber: "" });
+  const [newOrder, setNewOrder] = useState({ itemName: '', itemQty: 0, orderAddress: "", orderDelivery: "", phoneNumber: "" });
   const [updatedOrder, setUpdatedOrder] = useState({ id: 0, orderAddress: '', phoneNumber: '' });
 
 
   const placeOrder = () => {
-
+console.log(newOrder)
     axios.post('/order', newOrder)
       .then(response => {
         alert('Success');
@@ -35,8 +35,8 @@ function App() {
       <h1>Order Management</h1>
       <div>
         <h2>Place Order</h2>
-        <input type="text" value={newOrder.productName} onChange={(e) => setNewOrder({ ...newOrder, productName: e.target.value })} placeholder="Product Name" />
-        <input type="number" value={newOrder.quantity} onChange={(e) => setNewOrder({ ...newOrder, quantity: e.target.value })} placeholder="Quantity" />
+        <input type="text" value={newOrder.itemName} onChange={(e) => setNewOrder({ ...newOrder, itemName: e.target.value })} placeholder="Product Name" />
+        <input type="number" value={newOrder.itemQty} onChange={(e) => setNewOrder({ ...newOrder, itemQty: e.target.value })} placeholder="Quantity" />
         <input type="text" value={newOrder.orderAddress} onChange={(e) => setNewOrder({ ...newOrder, orderAddress: e.target.value })} placeholder="deliveryAddress" />
         <input type="date" value={newOrder.orderDelivery} onChange={(e) => setNewOrder({ ...newOrder, orderDelivery: e.target.value })} placeholder="deliveryDate" />
         <input type="text" value={newOrder.phoneNumber} onChange={(e) => setNewOrder({ ...newOrder, phoneNumber: e.target.value })} placeholder="phoneNumber" />
